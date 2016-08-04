@@ -1,0 +1,226 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6518,        216]
+NotebookOptionsPosition[      5580,        178]
+NotebookOutlinePosition[      5925,        193]
+CellTagsIndexPosition[      5882,        190]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"LibraryUnload", "[", "dll", "]"}], "//", "Quiet"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "dll", "=", 
+    "\"\<C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\ExportTable\\\\ExportTable.dll\>\""}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExportTable", "=", 
+   RowBox[{"LibraryFunctionLoad", "[", 
+    RowBox[{"dll", ",", "\"\<ExportTable\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<UTF8String\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"Real", ",", "2", ",", "\"\<Constant\>\""}], "}"}]}], "}"}], 
+     ",", "\"\<Void\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExportTable", "[", 
+   RowBox[{"\"\<test ExportTable.txt\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{"{", "1.", "}"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ExportTableFast", "=", 
+  RowBox[{"LibraryFunctionLoad", "[", 
+   RowBox[{"dll", ",", "\"\<ExportTableFast\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<UTF8String\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"Real", ",", "2", ",", "\"\<Constant\>\""}], "}"}], ",", 
+      "Integer", ",", "Integer"}], "}"}], ",", "\"\<Void\>\""}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ExportTableFast", "[", 
+  RowBox[{"\"\<test ExportTableFast 17 0.txt\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"{", "1.", "}"}], "}"}], ",", "17", ",", "0"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ExportTableFast", "[", 
+  RowBox[{"\"\<test ExportTableFast 17 0.txt\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"{", "1.", "}"}], "}"}], ",", "17", ",", "1"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.679325325200429*^9, 3.6793253342696476`*^9}, 
+   3.67933320083051*^9}],
+
+Cell[CellGroupData[{
+
+Cell["Benchmark", "Chapter",
+ CellChangeTimes->{{3.679333204846511*^9, 3.679333205915883*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1.", " ", "x"}], ",", 
+        RowBox[{"1.", " ", "y"}], ",", "0."}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "1000"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"y", ",", 
+        RowBox[{"10", "^", "3"}]}], "}"}]}], "]"}], "~", "Flatten", "~", 
+    "1"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6793253801277075`*^9, 3.6793253801277075`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "@", 
+  RowBox[{"Export", "[", 
+   RowBox[{
+   "\"\<test 1mio points.txt\>\"", ",", "data", ",", "\"\<Table\>\""}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6793253867244406`*^9, 3.6793253867244406`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"23.76863025425533`", ",", "\<\"test 1mio points.txt\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.679325412387616*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "@", 
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<test 1mio points.m\>\"", ",", "data"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6793253925787315`*^9, 3.6793253925787315`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2.1813924354739482`", ",", "\<\"test 1mio points.m\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.6793254145460577`*^9, 3.6793303843827844`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "@", 
+  RowBox[{"ExportTable", "[", 
+   RowBox[{"\"\<test 1mio points ExportTable.txt\>\"", ",", "data"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.679325394675087*^9, 3.679325404125312*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.1318509169940796`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6793254182084355`*^9, 3.679325946568761*^9, {3.6793303933990293`*^9, 
+   3.6793304013681307`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "@", 
+  RowBox[{"ExportTableFast", "[", 
+   RowBox[{"\"\<test 1mio points ExportTableFast.txt\>\"", ",", "data"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6793293996170626`*^9, 3.6793294001326838`*^9}, {
+  3.679330375967758*^9, 3.679330376764682*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.44527305583784077`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6793294471834583`*^9, 3.6793297169109907`*^9, 3.679329947477648*^9, {
+   3.679330328087251*^9, 3.679330358947406*^9}, 3.6793303938755465`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "@", 
+  RowBox[{"ExportTableFast2", "[", 
+   RowBox[{"\"\<test 1mio points ExportTableFast2.txt\>\"", ",", "data"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{3.6793315655913935`*^9, 3.679331909603674*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.0273499699849956`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6793317839138155`*^9, {3.679331861873454*^9, 3.679331914893982*^9}, 
+   3.6793319708126*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.679333135664122*^9}]
+}, Open  ]]
+},
+WindowSize->{942, 631},
+WindowMargins->{{Automatic, 292}, {100, Automatic}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1805, 45, 252, "Input"],
+Cell[CellGroupData[{
+Cell[2388, 69, 94, 1, 64, "Chapter"],
+Cell[2485, 72, 524, 16, 31, "Input"],
+Cell[CellGroupData[{
+Cell[3034, 92, 249, 6, 31, "Input"],
+Cell[3286, 100, 162, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3485, 109, 217, 4, 31, "Input"],
+Cell[3705, 115, 187, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3929, 124, 236, 5, 31, "Input"],
+Cell[4168, 131, 217, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4422, 141, 297, 6, 31, "Input"],
+Cell[4722, 149, 262, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5021, 159, 246, 5, 31, "Input"],
+Cell[5270, 166, 211, 5, 31, "Output"]
+}, Open  ]],
+Cell[5496, 174, 68, 1, 31, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
