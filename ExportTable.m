@@ -49,7 +49,7 @@ Options are:
     The files generated will be significantly larger than with %g, especially when DigitCount is large.
     But
 
- Parallelize: True (Default) / False. Whether multiple cores should be used to write the file. True implies Method -> \"FixedE\"
+ Parallelize: True (Default) / False. Whether multiple cores should be used to write the file. Has no effect for Method -> \"G\"
 "
 
 ExportTableUnload::usage = "Release all resources associated with this library.
