@@ -14,7 +14,7 @@ then load it as
 
 and use it as
 
-    ExportTable["fielname.txt", data]
+    ExportTable["filename.txt", data]
   
 # Feedback
 
