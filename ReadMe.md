@@ -1,6 +1,6 @@
 ExportTable is a faster implementation of Mathematica's
 Export[., "Table"] 
-for matrices of real numbers.
+for matrices of real numbers, created in response to https://mathematica.stackexchange.com/questions/120015/fast-way-to-export-large-amount-of-data-in-table-format/
 
 by Paul Frischknecht, 2016
 
